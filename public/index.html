@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>File Server</title>
+</head>
+
+<body>
+    <div class="headerContainer">
+        <div class="Title">
+            NewGenes File Server
+        </div>
+        <div class="logo">
+            New <div class="Genes">Genes</div>
+        </div>
+    </div>
+  
+    <div class="uploadContainer">
+        <form action="/upload" method="post" enctype="multipart/form-data" class="mb-3">
+            <div class="input-group">
+              <input type="file" name="file" class="form-control" required>
+              <button type="submit" class="btn btn-outline-primary">Upload</button>
+            </div>
+        </form>
+    </div>
+    
+    
+
+    <div class="headerContainer2">
+        <div class="Title">
+            List of Files
+        </div>
+    </div>
+    
+    <div class="searchContainer">
+        <input type="text" id="search-input" class="form-control mb-3" placeholder="Search for files...">   
+    </div>
+    
+
+    <div class="file-grid" id="file-list"></div>
+    
+
+    <script>
+        // Fetch and display the list of files
+        // JavaScript code to populate files in grid layout with buttons
+
+        // JavaScript code to populate files and handle search
+        fetch('/files')
+        .then(response => response.json())
+        .then(files => {
+            const fileGrid = document.getElementById('file-list');
+            const searchInput = document.getElementById('search-input');
+
+            // Function to filter files based on search input
+            function filterFiles() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredFiles = files.filter(file => file.toLowerCase().includes(searchTerm));
+
+            // Clear existing files in the grid
+            fileGrid.innerHTML = '';
+
+            // Populate grid with filtered files
+            filteredFiles.forEach(file => {
+                const fileDiv = document.createElement('div');
+                fileDiv.classList.add('file-card');
+                fileDiv.textContent = file;
+
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.classList.add('file-buttons');
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.classList.add('download-btn', 'btn', 'btn-outline-success');
+                downloadBtn.textContent = 'Download';
+                downloadBtn.addEventListener('click', () => {
+                window.open(`/download/${file}`, '_blank');
+                });
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('delete-btn', 'btn', 'btn-outline-danger');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.addEventListener('click', () => {
+                fetch(`/delete/${file}`, { method: 'DELETE' })
+                    .then(() => {
+                    fileDiv.remove();
+                    })
+                    .catch(error => console.error(error));
+                });
+
+                buttonsDiv.appendChild(downloadBtn);
+                buttonsDiv.appendChild(deleteBtn);
+                fileDiv.appendChild(buttonsDiv);
+                fileGrid.appendChild(fileDiv);
+            });
+            }
+
+            // Handle search input changes
+            searchInput.addEventListener('input', filterFiles);
+
+            // Initial population of files
+            filterFiles();
+        })
+        .catch(error => console.error(error));
+
+
+
+  </script>
+</body>
+
+</html>

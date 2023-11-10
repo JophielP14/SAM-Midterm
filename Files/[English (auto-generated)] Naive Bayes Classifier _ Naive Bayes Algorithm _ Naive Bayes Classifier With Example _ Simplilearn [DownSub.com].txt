@@ -1,0 +1,2484 @@
+introducing naive bayes classifier have
+
+you ever wondered how your mail provider
+
+implements spam filtering or how online
+
+news channels perform news text
+
+classification or how companies perform
+
+sentimental analysis of their audience
+
+on social media all of this and more is
+
+done through a machine learning
+
+algorithm called naive bayes classifier
+
+welcome to naive bayes tutorial my name
+
+is richard kirschner i'm with the simply
+
+learn team that's
+
+www.simplylearn.com get certified get
+
+ahead what's in it for you we'll start
+
+with what is naive bayes a basic
+
+overview of how it works we'll get into
+
+naive bayes and machine learning where
+
+it fits in with our other machine
+
+learning tools why do we need naive
+
+bayes and understanding naive bayes
+
+classifier a much more in depth of how
+
+the math works in the background finally
+
+we'll get into the advantages of the
+
+nave bayes classifier in the machine
+
+learning setup and then we'll roll up
+
+our sleeves and do my favorite part
+
+we'll actually do some python coding and
+
+do some text classification using the
+
+naive bayes what is naive bayes let's
+
+start with a basic introduction to the
+
+bayes theorem named after thomas bayes
+
+from the 1700s who first coined this in
+
+the western literature naive bay's
+
+classifier works on the principle of
+
+conditional probability as given by the
+
+bayes theorem before we move ahead let
+
+us go through some of the simple
+
+concepts in the probability that we will
+
+be using let us consider the following
+
+example of tossing two coins here we
+
+have two quarters and if we look at all
+
+the different possibilities of what they
+
+can come up as we get that they could
+
+come up as head heads come up as head
+
+tail tail head and tell tell when doing
+
+the math on probability we usually
+
+denote probability as a p a capital p so
+
+the probability of getting two heads
+
+equals one-fourth you can see on our
+
+data set we have two heads and this
+
+occurs once out of the four
+
+possibilities and then the probability
+
+of at least one tail occurs three
+
+quarters of the time you'll see in three
+
+of the coin tosses we have tails in them
+
+and out of four that's three fourths and
+
+then the probability of the second coin
+
+being head given the first coin is tail
+
+is one half and the probability of
+
+getting two heads given the first coin
+
+is a head is one half we'll demonstrate
+
+that in just a minute and show you how
+
+that math works now when we're doing it
+
+with two coins it's easy to see but when
+
+you have something more complex you can
+
+see where these pro these formulas
+
+really come in and work so the bayes
+
+theorem gives us the conditional
+
+probability of an event a given another
+
+event b has occurred in this case the
+
+first coin toss will be b and the second
+
+coin toss a this can be confusing
+
+because we've actually reversed the
+
+order of them and go from b to a instead
+
+of a to b you'll see this a lot when you
+
+work in probabilities the reason is
+
+we're looking for event a we want to
+
+know what that is so we're going to
+
+label that a since that's our focus and
+
+then given another event b has occurred
+
+in the bayes theorem as you can see on
+
+the left the probability of a occurring
+
+given b has occurred equals the
+
+probability of b occurring given a has
+
+occurred times a probability of a over
+
+the probability of b this simple formula
+
+can be moved around just like any
+
+algebra formula and we could do the
+
+probability of a after a given b times
+
+probability of b equals the probability
+
+of b given a times probability of a you
+
+can easily move that around and multiply
+
+it and divide it out let us apply bayes
+
+theorem to our example here we have our
+
+two quarters and we'll notice that the
+
+first two probabilities of getting two
+
+heads and at least one tail we compute
+
+directly off the data so you can easily
+
+see that we have
+
+one example h out of four one fourth and
+
+we have three with tells in them giving
+
+us three quarters or three four seventy
+
+five percent
+
+the second condition the second uh set
+
+three and four we're gonna explore a
+
+little bit more in detail now we stick
+
+to a simple example with two coins
+
+because you can easily understand the
+
+math the probability of throwing a tail
+
+doesn't matter what comes before it and
+
+the same with the heads so it's still
+
+gonna be fifty percent or one half but
+
+when that come when that probability
+
+gets more complicated let's say you have
+
+a d6 dice or some other instance then
+
+this formula really comes in handy but
+
+let's stick to the simple example for
+
+now in this sample space let a be the
+
+event that the second coin is head and b
+
+be the event that the first coin is
+
+tails again we reversed it because we
+
+want to know what the second event is
+
+going to be so we're going to be
+
+focusing on a and we write that out as a
+
+probability of a given b and we know
+
+this from our formula that that equals
+
+the probability of b given a times the
+
+probability of a over the probability of
+
+b and when we plug that in we plug in
+
+the probability of the first coin being
+
+tails given the second coin is heads and
+
+the probability of the second coin being
+
+heads given the first coin being over
+
+the probability of the first coin being
+
+tails when we plug that data in and we
+
+have the probability of the first coin
+
+being tails given the second coin is
+
+heads times the probability of the
+
+second coin being heads over the
+
+probability of the first coin being
+
+tails you can see it's a simple formula
+
+to calculate we have one-half times
+
+one-half over one-half or one-half
+
+equals point five or one-fourth so the
+
+bayes theorem basically calculates the
+
+conditional probability of the
+
+occurrence of an event based on prior
+
+knowledge of conditions that might be
+
+related to the event we will explore
+
+this in detail when we take up an
+
+example of online shopping further in
+
+this tutorial understanding naive bayes
+
+and machine learning like with any of
+
+our other machine learning tools it's
+
+important to understand where the naive
+
+bayes fits in the hierarchy so under the
+
+machine learning we have supervised
+
+learning and there is other things like
+
+unsupervised learning there's also
+
+reward system this falls under the
+
+supervised learning and then under the
+
+surprise learning there's classification
+
+there's also regression but we're going
+
+to be in the classification side and
+
+then under classification is your naive
+
+bayes let's go ahead and glance into
+
+where is naive bayes used let's look at
+
+some of the use scenarios for it as a
+
+classifier we use it in face recognition
+
+is this cindy or is it not cindy or
+
+whoever or it might be used to identify
+
+parts of the face that they then feed
+
+into another part of the face
+
+recognition program this is the eye this
+
+is the nose this is the mouth weather
+
+prediction is it going to be rainy or
+
+sunny medical recognition news
+
+prediction it's also used in medical
+
+diagnosis we might diagnose somebody as
+
+either as high risk or not as high risk
+
+for cancer or heart disease or other
+
+elements and news classification when
+
+you look at the google news and it says
+
+well is this political or is this world
+
+news or a lot of that's all done with
+
+the naive bayes understanding naive
+
+bayes classifier now we already went
+
+through a basic understanding with the
+
+coins and the two heads and two tails
+
+and head tail tail heads etc we're going
+
+to do just a quick review on that and
+
+remind you that the naive bayes
+
+classifier is based on the bayes theorem
+
+which gives a conditional probability of
+
+event a given event b and that's where
+
+the probability of a given b equals the
+
+probability of b given a times
+
+probability of a over probability of b
+
+remember this is an algebraic function
+
+so we can move these different entities
+
+around we can multiply by the
+
+probability of b so it goes to the left
+
+hand side and then we can divide by the
+
+probability of a given b and just as
+
+easily come up with a new formula for
+
+the probability of b to me staring at
+
+these algebraic functions kind of gives
+
+me a slight headache
+
+it's a lot better to see if we can
+
+actually understand how this data fits
+
+together in a table and let's go ahead
+
+and start applying it to some actual
+
+data so you can see what that looks like
+
+so we're going to start with the
+
+shopping demo problem statement and
+
+remember we're going to solve this first
+
+in table form so you can see what the
+
+math looks like and then we're going to
+
+solve it in python and in here we want
+
+to predict whether the person will
+
+purchase a product are they going to buy
+
+or don't buy very important if you're
+
+running a business you want to know how
+
+to maximize your profits or at least
+
+maximize the purchase of the people
+
+coming into your store and we're going
+
+to look at a specific combination of
+
+different variables in this case we're
+
+going to look at the day the discount
+
+and the free delivery and you can see
+
+here under the day we want to know
+
+whether it's on the weekday you know
+
+somebody's working they come in after
+
+work or maybe they don't work weekend
+
+you can see the bright colors coming
+
+down there celebrating not being in work
+
+or holiday and did we offer a discount
+
+that day yes or no did we offer free
+
+delivery that day yes or no and from
+
+this we want to know whether the person
+
+is going to buy based on these traits so
+
+we can maximize them and find out the
+
+best system for getting somebody to come
+
+in and purchase our goods and products
+
+from our store now having a nice visual
+
+is great but we do need to dig into the
+
+data so let's go ahead and take a look
+
+at the data set we have a small sample
+
+data set of 30 rows we're showing you
+
+the first 15 of those roads for this
+
+demo now the actual data file you can
+
+request just type in below under the
+
+comments on the youtube video and we'll
+
+send you some more information and send
+
+you that file as you can see here the
+
+file is very simple columns and rows we
+
+have the day the discount the free
+
+delivery and did the person purchase or
+
+not and then we have under the day
+
+whether it was a weekday a holiday
+
+was it the weekend this is a pretty
+
+simple set of data and long before
+
+computers people used to look at this
+
+data and calculate this all by hand so
+
+let's go ahead and walk through this and
+
+see what that looks like we put that
+
+into tables also note in today's world
+
+we're not usually looking at three
+
+different variables in 30 rows nowadays
+
+because we're able to collect data so
+
+much we're usually looking at 27 30
+
+variables across hundreds of rows the
+
+first thing we want to do is we're going
+
+to take this data and based on the data
+
+set containing our three inputs day
+
+discount and free delivery we're going
+
+to go ahead and populate that to
+
+frequency tables for each attribute so
+
+we want to know if they had a discount
+
+how many people
+
+buy and did not buy uh did they have a
+
+discount yes or no do we have a free
+
+delivery yes or no on those days how
+
+many people made a purchase how many
+
+people didn't and the same with the
+
+three days of the week was it a weekday
+
+a weekend a holiday and did they buy yes
+
+or no as we dig in deeper to this table
+
+for our bayes theorem let the event buy
+
+ba now remember we looked at the coins i
+
+said we really want to know what the
+
+outcome is did the person buy or not and
+
+that's usually event a is what you're
+
+looking for and the independent
+
+variables discount free delivery and day
+
+bb so we'll call that probability of b
+
+now let us calculate the likelihood
+
+table for one of the variables let's
+
+start with day which includes weekday
+
+weekend and holiday and let us start by
+
+summing all of our rows so we have the
+
+weekday row and out of the weekdays
+
+there's nine plus two so it's 11
+
+weekdays there's eight weekend days and
+
+11 holidays wow it's a lot of holidays
+
+and then we want to sum up the total
+
+number of days so we're looking at a
+
+total of 30 days let's start pulling
+
+some information from our chart and see
+
+where that takes us and when we fill in
+
+the chart on the right you can see that
+
+9 out of 24 purchases are made on the
+
+weekday 7 out of 24 purchases on the
+
+weekend and 8 out of 24 purchases on a
+
+holiday and out of all the people who
+
+come in 24 out of 30 purchase you can
+
+also see how many people do not purchase
+
+on the weekdays two out of six didn't
+
+purchase and so on and so on we can also
+
+look at the totals and you'll see on the
+
+right we put together some of the
+
+formulas the probability of making a
+
+purchase on the weekend comes out 11 out
+
+of 30. so out of the 30 people who came
+
+into the store throughout the weekend
+
+weekday and holiday 11 of those
+
+purchases were made on the weekday and
+
+then you can also see the probability of
+
+them not making a purchase and this is
+
+done for doesn't matter which day of the
+
+week so we call that probability of no
+
+buy would be 6 over 30 or 0.2 so there's
+
+a 20 percent chance that they're not
+
+going to make a purchase no matter what
+
+day of the week it is and finally we
+
+look at the probability of bfa in this
+
+case we're going to look at the
+
+probability of the weekday and not
+
+buying two of the no buys were done out
+
+of the weekend out of the six people who
+
+did not make purchases so when we look
+
+at that probability of the weekday
+
+without a purchase is going to be 0.33
+
+or 33 percent
+
+let's take a look at this at different
+
+probabilities and based on this
+
+likelihood table let's go ahead and
+
+calculate conditional probabilities as
+
+below the first three we just did the
+
+probability of making a purchase on the
+
+weekday is 11 out of 30 or roughly 36 or
+
+37 percent 0.367 the probability of not
+
+making a purchase at all doesn't matter
+
+what day of the week is roughly point
+
+two or twenty percent and the
+
+probability of a weekday no purchase is
+
+roughly two out of six so two out of six
+
+of our no purchases were made on the
+
+weekday and then finally we take our p
+
+of a b
+
+if you look we've kept the symbols up
+
+there we got p of probability of b
+
+probability of a probability of b if a
+
+we should remember that the probability
+
+of a if b
+
+is equal to the first one times the
+
+probability of no buys over the
+
+probability of the weekday so we could
+
+calculate it both off the table we
+
+created we can also calculate this by
+
+the formula and we get the 0.367
+
+which equals or 0.33 times 0.2 over
+
+0.367 which equals 0.179
+
+or roughly 17 to 18 percent and that'd
+
+be the probability of no purchase done
+
+on the weekday and this is important
+
+because we can look at this and say as
+
+the probability of buying on the weekday
+
+is more than the probability of not
+
+buying on the weekday we can conclude
+
+that customers will most likely buy the
+
+product on a weekday now we've kept our
+
+charts simple and we're only looking at
+
+one aspect so you should be able to look
+
+at the table and come up with the same
+
+information or the same conclusion that
+
+should be kind of intuitive at this
+
+point next we can take the same setup we
+
+have the frequency tables of all three
+
+independent variables now we can
+
+construct the likelihood tables for all
+
+three of the variables we're working
+
+with we can take our day like we did
+
+before we have weekday weekend and
+
+holiday we filled in this table and then
+
+we can come in and also do that for the
+
+discount yes or no did they buy yes or
+
+no and we fill in that full table so now
+
+we have our probabilities for a discount
+
+and whether the discount leads to a
+
+purchase or not and the probability for
+
+free delivery does that lead to a
+
+purchase or not and this is where it
+
+starts getting really exciting let us
+
+use these three likelihood tables to
+
+calculate whether a customer will
+
+purchase a product on a specific
+
+combination of day discount and free
+
+delivery or not purchase here let us
+
+take a combination of these factors day
+
+equals holiday discount equals yes free
+
+delivery equals yes let's dig deeper
+
+into the math and actually see what this
+
+looks like and we're going to start with
+
+looking for the probability of them not
+
+purchasing on the following combinations
+
+of days we're actually looking for the
+
+probability of a equal no buy no
+
+purchase and our probability of b we're
+
+going to set equal to is it a holiday
+
+did they get a discount yes and was it a
+
+free delivery yes before we go further
+
+let's look at the original equation the
+
+probability of a if b equals the
+
+probability of b given the condition a
+
+and the probability times probability of
+
+a over the probability of b occurring
+
+now this is basic algebra so we can
+
+multiply this information together so
+
+when you see the probability of a given
+
+b in this case the condition is b c and
+
+d or the three different variables we're
+
+looking at and when you see the
+
+probability of b that would be the
+
+conditions we're actually going to
+
+multiply those three separate conditions
+
+out probability of you'll see that in a
+
+second in the formula times the full
+
+probability of a over the full
+
+probability of b so here we are back to
+
+this and we're going to have let a equal
+
+no purchase and we're looking for the
+
+probability of b on the condition a
+
+where a sets for three different things
+
+remember that equals the probability of
+
+a given the condition b
+
+and in this case we just multiply those
+
+three different variables together so we
+
+have the probability of the discount
+
+times the probability of free delivery
+
+times the probability is a day equal a
+
+holiday those are our three variables of
+
+the probability of a if b and then that
+
+is going to be multiplied by the
+
+probability of them not making a
+
+purchase and then we want to divide that
+
+by the total probabilities and they're
+
+multiplied together so we have the
+
+probability of a discount the
+
+probability of a free delivery and the
+
+probability of it being on a holiday
+
+when we plug those numbers in we see
+
+that one out of six were no purchase on
+
+a discounted day two out of six were a
+
+no purchase on a free delivery day and
+
+three out of six were a no purchase on a
+
+holiday those are our three
+
+probabilities of afb multiplied out and
+
+then that has to be multiplied by the
+
+probability of a no purchase and
+
+remember the prop probability of a no
+
+buy is across all the data so that's
+
+where we get the 6 out of 30. we divide
+
+that out by the probability of each
+
+category over the total number so we get
+
+the 20 out of 30 had a discount 23 out
+
+of 30 had a yes for free delivery and 11
+
+out of 30 were on a holiday we plug all
+
+those numbers in we get
+
+0.178 so in our probability math we have
+
+a 0.178 if it's a no buy for a holiday a
+
+discount and a free delivery let's turn
+
+that around and see what that looks like
+
+if we have a purchase i promise this is
+
+the last page of math before we dig into
+
+the python script so here we're
+
+calculating the probability of the
+
+purchase using the same math we did to
+
+find out if they didn't buy now we want
+
+to know if they did buy and again we're
+
+going to go by the day equals a holiday
+
+discount equals yes free delivery equals
+
+yes and let a equal buy now right about
+
+now you might be asking why are we doing
+
+both calculations
+
+why why would we want to know the no
+
+buys and buys for the same data going in
+
+well we're going to show you that in
+
+just a moment but we have to have both
+
+of those pieces of information so that
+
+we can figure it out as a percentage as
+
+opposed to a probability equation and
+
+we'll get to that normalization here in
+
+just a moment let's go ahead and walk
+
+through this calculation and as you can
+
+see here the probability of a on the
+
+condition of b b being all three
+
+categories did we have a discount with a
+
+purchase do we have a free delivery with
+
+a purchase and did we is a day equal to
+
+holiday and when we plug this all into
+
+that formula and multiply it all out we
+
+get our probability of a discount
+
+probability of a free delivery
+
+probability of the day being a holiday
+
+times the overall probability of it
+
+being a purchase divided by again
+
+multiplying the three variables out the
+
+full probability of there being a
+
+discount the full probability of being a
+
+free delivery and the full probability
+
+of there being a day equal holiday and
+
+that's where we get this 19 over 24
+
+times 21 over 24 times 8 over 24 times
+
+the p of a 24 over 30 divided by the
+
+probability of the discount the free
+
+delivery times a day or 20 over 30 23
+
+over 30 times 11 over 30 and that gives
+
+us our 0.986
+
+so what are we going to do with these
+
+two pieces of data we just generated
+
+well let's go ahead and go over them we
+
+have a probability of purchase equals
+
+0.986 we have a probability of no
+
+purchase equals 0.178
+
+so finally we have a conditional
+
+probabilities of purchase on this day
+
+let us take that we're going to
+
+normalize it and we're going to take
+
+these probabilities and turn them into
+
+percentages this is simply done by
+
+taking the sum of probabilities which
+
+equals 0.98686
+
+plus 0.178 and that equals the 1.164
+
+if we divide each probability by the sum
+
+we get the percentage and so the
+
+likelihood of a purchase is 84.71
+
+and the likelihood of no purchase is
+
+15.29
+
+given these three different variables so
+
+it's if it's on a holiday if it's a with
+
+a discount and has free delivery then
+
+there's an 84.71 percent chance that the
+
+customer is going to come in and make a
+
+purchase hooray they purchased our stuff
+
+we're making money if you're owning a
+
+shop that's like is the bottom line is
+
+you want to make some money so you keep
+
+your shop open and have a living now i
+
+promised you that we were going to be
+
+finishing up the math here with a few
+
+pages so we're going to move on and
+
+we're going to do two steps the first
+
+step is i want you to understand
+
+why you want to under why you want to
+
+use the naive bayes what are the
+
+advantages of naive bayes and then once
+
+we understand those advantages we'll
+
+just look at that briefly then we're
+
+going to dive in and do some python
+
+coding advantages of naive bayes
+
+classifier so let's take a look at the
+
+six advantages of the naive bayes
+
+classifier and we're going to walk
+
+around this lovely wheel looks like an
+
+origami folded paper the first one is
+
+very simple and easy to implement
+
+certainly you could walk through the
+
+tables and do this by hand you gotta be
+
+a little careful because the notations
+
+can get confusing you have all these
+
+different probabilities and i certainly
+
+mess those up as i put them on you know
+
+is it on the top of the bottom got to
+
+really pay close attention to that when
+
+you put it into python it's really nice
+
+because you don't have to worry about
+
+any of that you let the python handle
+
+that the python module but understanding
+
+it you can put it on a table and you can
+
+easily see how it works and it's a
+
+simple algebraic function it needs less
+
+training data so if you have smaller
+
+amounts of data this is great powerful
+
+tool for that handles both continuous
+
+and discrete data it's highly scalable
+
+with number of predictors and data
+
+points so as you can see you just keep
+
+multiplying different probabilities in
+
+there and you can cover not just three
+
+different variables or sets you can now
+
+expand this to even more categories
+
+number five it's fast it can be used in
+
+real time predictions this is so
+
+important this is why it's used in a lot
+
+of our predictions on online shopping
+
+carts referrals spam filters is because
+
+there's no time delay as it has to go
+
+through and figure out a neural network
+
+or one of the other mini setups where
+
+you're doing classification and
+
+certainly there's a lot of other tools
+
+out there in the machine learning that
+
+can handle these
+
+but most of them are not as fast as the
+
+naive bayes and then finally it's not
+
+sensitive to irrelevant features so it
+
+picks up on your different probabilities
+
+and if you're short on date on one
+
+probability you can kind of it
+
+automatically adjust for that those
+
+formulas are very automatic
+
+and so you can still get a very solid
+
+predictability even if you're missing
+
+data or you have overlapping data for
+
+two completely different areas we see
+
+that a lot in doing census and studying
+
+of people and habits where they might
+
+have one study that covers one aspect
+
+another one that overlaps and because
+
+the two overlap they can then predict
+
+the unknowns for the group that they
+
+haven't done the second study on or vice
+
+versa so it's very powerful in that it
+
+is not sensitive to the irrelevant
+
+features and in fact you can use it to
+
+help predict features that aren't even
+
+in there so now we're down to my
+
+favorite part we're going to roll up our
+
+sleeves and do some actual programming
+
+we're going to do the use case text
+
+classification now i would challenge you
+
+to go back and send us a note on the
+
+notes below underneath the video and
+
+request the data for the shopping cart
+
+so you can plug that into python code
+
+and do that on your own time so you can
+
+walk through it since we walk through
+
+all the information on it but we're
+
+going to do a python code doing text
+
+classification very popular for doing
+
+the naive bayes so we're going to use
+
+our new tool to perform a text
+
+classification of news headlines and
+
+classify news into different topics for
+
+a news website as you can see here we
+
+have a nice image of the google news and
+
+then related on the right sub groups i'm
+
+not sure where they actually pulled the
+
+actual data we're going to use from it's
+
+one of the standard sets but certainly
+
+this can be used on any of our news
+
+headlines in classification so let's see
+
+how it can be done using the naive bayes
+
+classifier now we're at my favorite part
+
+we're actually going to write some
+
+python script roll up our sleeves and
+
+we're going to start by doing our
+
+imports these are very basic imports
+
+including our news group and we'll take
+
+a quick glance at the target names then
+
+we're going to go ahead and start
+
+training our data set and putting it
+
+together we'll put together a nice graph
+
+because it's always good to have a graph
+
+to show what's going on and once we've
+
+traded it and we've shown you a graph of
+
+what's going on then we're going to
+
+explore how to use it and see what that
+
+looks like now i'm going to open up my
+
+favorite editor or inline editor for
+
+python you don't have to use this you
+
+can use whatever your editor that you
+
+like whatever interface ide you want
+
+this just happens to be the anaconda
+
+jupiter notebook and i'm going to paste
+
+that first piece of code in here so we
+
+can walk through it
+
+let's make it a little bigger on the
+
+screen so you have a nice view of what's
+
+going on
+
+and we're using python three in this
+
+case 3.5 so this would work in any of
+
+your 3x
+
+if you have it set up correctly it
+
+should also work in a lot of the 2x you
+
+just have to make sure all of the
+
+versions of the modules match your
+
+python version and in here you'll notice
+
+the first line is your percentage matte
+
+plot library in line now three of these
+
+lines of code are all about plotting the
+
+graph
+
+this one lets the notebook notes as an
+
+inline setup that we want the graphs to
+
+show up on this page without it in a
+
+notebook like this which is an explorer
+
+interface it won't show up now a lot of
+
+ides don't require that a lot of them
+
+like on if i'm working on one of my
+
+other setups it just has a pop-up and
+
+the graph pops up on there so you have
+
+that set up also but for this we want
+
+the matplot library in line and then
+
+we're going to import numpy as np that's
+
+number python which has a lot of
+
+different formulas in it that we use for
+
+both of our sklearn module and we also
+
+use it for any of the upper math
+
+functions in python and it's very common
+
+to see that as np numpy as np the next
+
+two lines are all about our graphing
+
+remember i said three of these were
+
+about graphing well we need our matplot
+
+library dot pi plot as plt and you'll
+
+see that plt is a very common setup as
+
+is the sns and just like the np and
+
+we're going to import seaborn as sns and
+
+we're going to do the sns.set now
+
+seaborn sits on top of pie plot and it
+
+just makes a really nice heat map it's
+
+really good for heat maps and if you're
+
+not familiar with heat maps that just
+
+means we give it a color scale the term
+
+comes from the brighter red it is the
+
+hotter it is in some form of data and
+
+you can set it to whatever you want and
+
+we'll see that later on so those you'll
+
+see that those three lines of code here
+
+are just importing the graph function so
+
+we can graph it and as a data science
+
+test you always want to graph your data
+
+and have some kind of visual it's really
+
+hard just to shove numbers in front of
+
+people and they look at it and it
+
+doesn't mean anything and then from the
+
+sklearn.datasets
+
+we're going to import the fetch 20 news
+
+groups very common one for analyzing
+
+tokenizing words and setting them up and
+
+exploring how the words work and how do
+
+you categorize different things when
+
+you're dealing with documents and then
+
+we set our data equal to fetch 20 news
+
+groups so our data variable will have
+
+the data in it and we're going to go
+
+ahead and just print the target names
+
+data.target names and let's see what
+
+that looks like and you'll see here we
+
+have alt atheism comp graphics comp os
+
+ms windows dot miscellaneous and it goes
+
+all the way down to talk politics dot
+
+miscellaneous talk religion dot
+
+miscellaneous these are the categories
+
+they've already assigned to this news
+
+group and it's called fetch 20 because
+
+you'll see there's i believe there's 20
+
+different topics in here or 20 different
+
+categories as we scroll down now we've
+
+gone through the 20 different categories
+
+and we're going to go ahead and start
+
+defining all the categories and set up
+
+our data so we're actually getting here
+
+going to go ahead and get it get the
+
+data all set up and take a look at our
+
+data and let's move this over to our
+
+jupyter notebook
+
+and let's see what this code does
+
+first we're going to set our categories
+
+now if you noticed up here i could have
+
+just as easily set this equal to
+
+data.target underscore names because
+
+it's the same thing but we want to kind
+
+of spell it out for you so you can see
+
+the different categories it kind of
+
+makes it more visual so you can see what
+
+your data is looking like in the
+
+background once we've created the
+
+categories
+
+we're going to open up a train set so
+
+this training set of data is going to go
+
+into fetch 20 news groups and it's a
+
+subset in there called train and
+
+categories equals categories so we're
+
+pulling out those categories that match
+
+and then if you have a train set you
+
+should also have the testing set we have
+
+test equals fetch 20 news groups subset
+
+equals test and categories equals
+
+categories let's go down one side so it
+
+all fits on my screen there we go and
+
+just so we can really see what's going
+
+on let's see what happens when we print
+
+out
+
+one part of that data
+
+so
+
+it creates train and under train it
+
+creates train dot data and we're just
+
+going to look at data piece number five
+
+and let's go ahead and run that and see
+
+what that looks like and you can see
+
+when i print train dot data number five
+
+under train it prints out one of the
+
+articles this is article number five you
+
+can go through and read it on there and
+
+we can also go in here and change this
+
+to test which should look identical
+
+because it's splitting the date up into
+
+different groups train and test and
+
+we'll see test number five is a
+
+different article but it's another
+
+article in here and maybe you're curious
+
+and you want to see just how many
+
+articles are in here we could do
+
+length
+
+of train dot data and if we run that
+
+you'll see that the training data has 11
+
+314 articles so we're not going to go
+
+through all those articles that's a lot
+
+of articles but we can look at one of
+
+them just so you can see what kind of
+
+information is coming out of it and what
+
+we're looking at and we'll just look at
+
+number five for today and here we have
+
+it rewording the second amendment ids
+
+vtt line 58 lines 58 in article
+
+etc and scroll all the way down and see
+
+all the different parts to there now
+
+we've looked at it and that's pretty
+
+complicated when you look at one of
+
+these articles to try to figure out how
+
+do you weight this if you look down here
+
+we have different words and maybe the
+
+word from well from is probably in all
+
+the articles so it's not going to have a
+
+lot of meaning as far as trying to
+
+figure out whether this article fits one
+
+of the categories or not so trying to
+
+figure out which category fits in based
+
+on these words is where the challenge
+
+comes in now that we've viewed our data
+
+we're going to dive in and do the actual
+
+predictions this is the actual naive
+
+bayes and we're going to throw another
+
+model at you or another module at you
+
+here in just a second we can't go into
+
+too much detail but it deals
+
+specifically working with words and text
+
+and what they call tokenizing those
+
+words
+
+so let's take this code and let's uh
+
+skip on over to our jupiter notebook and
+
+walk through it and here we are in our
+
+jupiter notebook let's paste that in
+
+there and i can run this code right off
+
+the bat it's not actually going to
+
+display anything yet but it has a lot
+
+going on in here so the top we have the
+
+print module from the earlier one i
+
+didn't know why that was in there so
+
+we're going to start by importing our
+
+necessary packages and from the sklearn
+
+features extraction dot text we're going
+
+to import tf idf vectorizer i told you
+
+we're going to throw a module at you we
+
+can't go too much into the math behind
+
+this or how it works you can look it up
+
+the notation for the math is usually
+
+tf.idf
+
+and that's just a way of weighing the
+
+words and it weighs the words based on
+
+how many times they're used in a
+
+document how many times or how many
+
+documents they're used in and it's a
+
+well-used formula it's been around for a
+
+while it's a little confusing to put
+
+this in here
+
+but let's let her know that it just goes
+
+in there and waits the different words
+
+in the document for us
+
+that way we don't have to wait if you
+
+put a weight on it if you remember i was
+
+talking about that up here earlier if
+
+these are all emails they probably all
+
+have the word from in them from probably
+
+has a very low weight it has very little
+
+value in telling you what this
+
+document's about same with words like in
+
+an article in articles n cost of on
+
+maybe cost might or were words like
+
+criminal weapons destruction these might
+
+have a heavier weight because you
+
+describe a little bit more what the
+
+article is doing well how do you figure
+
+out all those weights in the different
+
+articles that's what this module does
+
+that's what the tf idf vectorizer is
+
+going to do for us and then we're going
+
+to import our sklearn.naive bayes and
+
+that's our multinomial nb
+
+multinomial
+
+naive bayes pretty easy to understand
+
+that where that comes from and then
+
+finally we have the sky learn pipeline
+
+import make pipeline now the make
+
+pipeline is just a cool piece of code
+
+because we're going to take the
+
+information we get from the tf idf
+
+vectorizer and we're going to pump that
+
+into the multinomial nb
+
+so a pipeline is just a way of
+
+organizing how things flow it's used
+
+commonly you probably already guess what
+
+it is if you've done any businesses they
+
+talk about the cells pipeline if you're
+
+on a work crew or project manager you
+
+have your pipeline of information that's
+
+going through where your projects and
+
+what has to be done in what order that's
+
+all this pipeline is
+
+we're going to take the tfid vectorizer
+
+and then we're going to push that into
+
+the multinomial nb now we've designated
+
+that as the variable model we have our
+
+pipeline model and we're going to take
+
+that model and this is just so elegant
+
+this is done in just a couple lines of
+
+code model.fit and we're going to fit
+
+the data and first the train data and
+
+then the train target
+
+now the train data has the different
+
+articles in it you can see the one we
+
+were just looking at and the train dot
+
+target is what category they already
+
+categorize that that particular article
+
+as and what's happening here is the
+
+train data is going into the tf id
+
+vectorizer so when you have one of these
+
+articles that goes in there it weights
+
+all the words in there so there's
+
+thousands of words with different
+
+weights on them i remember once running
+
+a model on this and i literally had 2.4
+
+million tokens go into this
+
+so when you're doing like large document
+
+bases you can have a huge number of
+
+different words it then takes those
+
+words gives them a weight and then based
+
+on that weight based on the words and
+
+the weights and then puts that into the
+
+multinomial in b and once we go into our
+
+naive bayes we want to put the train
+
+target in there so the train data that's
+
+been mapped to the tfid vectorizer is
+
+now going through the multinomial in b
+
+and then we're telling it well these are
+
+the answers these are the answers to the
+
+different documents so this document
+
+that has all these words with these
+
+different weights from the first part is
+
+going to be whatever category it comes
+
+out of maybe it's the
+
+talk show or the article on religion
+
+miscellaneous once we fit that model we
+
+can then take labels and we're going to
+
+set that equal to model.predict most of
+
+the sklearn used the term dot predict to
+
+let us know that we've now trained the
+
+model and now we want to get some
+
+answers and we're going to put our test
+
+data in there because our test data is
+
+the stuff we held off to the side we
+
+didn't train it on there and we don't
+
+know what's going to come up out of it
+
+and we just want to find out how good
+
+our labels are do they match what they
+
+should be now i've already run this
+
+through there's no actual output to it
+
+to show this is just setting it all up
+
+this is just training our model creating
+
+the labels so we can see how good it is
+
+and then we move on to the next step to
+
+find out what happened to do this we're
+
+going to go ahead and create a confusion
+
+matrix and a heat map so
+
+the confusion matrix which is confusing
+
+just by its very name is basically going
+
+to ask how confused is our answer did it
+
+get it correct or did it miss some
+
+things in there or have some mis labels
+
+and then we're going to put that on a
+
+heat map so we'll have some nice colors
+
+to look at to see how that plots out
+
+let's go ahead and take this code and
+
+see how that take a walk through it and
+
+see what that looks like so back to our
+
+jupiter notebook i'm going to put the
+
+code in there and let's go ahead and run
+
+that code
+
+take it just a moment and remember we
+
+had the inline that way my graph shows
+
+up on the inline here
+
+and let's walk through the code and then
+
+we'll look at this and see what that
+
+means so make it a little bit bigger
+
+there we go no reason not to use a whole
+
+screen too big so we have here from sk
+
+learn metrics import confusion matrix
+
+and that's just going to generate a set
+
+of data that says i the prediction was
+
+such the actual
+
+truth was either agreed with it or is
+
+something different and it's going to
+
+add up those numbers so we can take a
+
+look and just see how well it worked
+
+and we're going to set a variable mat
+
+equal to confusion matrix we have our
+
+test target our test data that was not
+
+part of the training
+
+very important in data science we always
+
+keep our test data separate
+
+otherwise it's not a valid model if we
+
+can't properly test it with new data and
+
+this is the labels we created from that
+
+test data these are the ones that we
+
+predict it's going to be so we go in and
+
+we create our sn heat map the sns is our
+
+seaborn which sits on top of the pi plot
+
+so we create a sns dot heat map we take
+
+our confusion matrix and it's going to
+
+be mat dot t and do we have other
+
+variables that go into the sns.heat map
+
+we're not going to go into detail what
+
+all the variables mean the annotation
+
+equals true that's what tells it to put
+
+the numbers here so you have the 166 the
+
+one the zero zero zero one format d and
+
+c bar equals false have to do with the
+
+uh format if you take those out you'll
+
+see that some things disappear and then
+
+the x tick labels and the y tick labels
+
+those are our target names and you can
+
+see right here that's the alt atheism
+
+comp graphics comp osms windows dot
+
+miscellaneous and then finally we have
+
+our plt dot x label remember the sns or
+
+the seaborn sits on top of our matplot
+
+library our plt and so we want to just
+
+tell that x label equals a true is is
+
+true the labels are true and then the y
+
+label is prediction label so
+
+we say a true this is what it actually
+
+is and the prediction is what we
+
+predicted and let's look at this graph
+
+because that's probably a little
+
+confusing the way i rattled through it
+
+and what i'm going to do is i'm going to
+
+go ahead and flip back to the slides
+
+because they have a black background
+
+they put in there that helps it shine a
+
+little bit better so you can see the
+
+graph a little bit easier so in reading
+
+this graph what we want to look at is
+
+how the color scheme has come out and
+
+you'll see a line right down the middle
+
+diagonally from upper left to bottom
+
+right what that is is if you look at the
+
+labels we have our predicted label on
+
+the left and our true label on the right
+
+those are the numbers where the
+
+prediction and the true come together
+
+and this is what we want to see is we
+
+want to see those lit up that's what
+
+that heat map does as you can see that
+
+it did a good job of finding those data
+
+and you'll notice that there's a couple
+
+of red spots on there where i missed you
+
+know it's a little confused we talk
+
+about talk religion miscellaneous versus
+
+talk politics miscellaneous social
+
+religion christian versus alt atheism it
+
+mislabeled some of those and those are
+
+very similar topics so you could
+
+understand why it might mislabel them
+
+but overall it did a pretty good job if
+
+we're going to create these models we
+
+want to go ahead and be able to use them
+
+so let's see what that looks like to do
+
+this let's go ahead and create a
+
+definition a function to run and we're
+
+going to call this function let me just
+
+expand that just a notch here there we
+
+go i like mine in big letters predict
+
+categories we want to predict the
+
+category we're going to send it s a
+
+string and then we're sending it train
+
+equals train we have our training model
+
+and then we had our pipeline model
+
+equals model this way we don't have to
+
+resend these variables each time the
+
+definition knows that because i said
+
+train equals train and i put the equal
+
+for model and then
+
+we're going to set the prediction equal
+
+to the model.predict s so it's going to
+
+send whatever
+
+string we send to it it's going to push
+
+that string through the pipeline the
+
+model pipeline it's going to go through
+
+and tokenize it and put it through the
+
+tf idf convert that into numbers and
+
+weights for all the different documents
+
+and words and then i'll put that through
+
+our naive bayes and from it we'll go
+
+ahead and get our prediction we're going
+
+to predict what value it is and so we're
+
+going to return train dot target names
+
+predict of zero and remember that the
+
+train dot target names that's just
+
+categories i could have just as easily
+
+put categories in there dot predict of
+
+zero so we're taking the prediction
+
+which is a number and we're converting
+
+it to an actual category we're
+
+converting it from i don't know what the
+
+actual numbers are but let's say zero
+
+equals alt atheism so we're going to
+
+convert that zero to the word or one
+
+maybe it equals comp graphics so we're
+
+going to convert number one into comp
+
+graphics that's all that is and then we
+
+got to go ahead and and then we need to
+
+go ahead and run this so i load that up
+
+and then once i run that we can start
+
+doing some predictions
+
+let me go ahead and type in predict
+
+category
+
+and let's just do predict category jesus
+
+christ and it comes back and says it's
+
+social religion christian that's pretty
+
+good
+
+now note i didn't put print on this one
+
+the nice things about the jupiter
+
+notebook editor and a lot of inline
+
+editors is if you just put the name of
+
+the variable out as returning the
+
+variable train.target underscore names
+
+it'll automatically print that for you
+
+in your own id you might have to put in
+
+print let's see where else we can take
+
+this and maybe you're a space science
+
+buff so how about sending
+
+load to
+
+international
+
+space station
+
+and if we run that
+
+we get science space
+
+or maybe you're a uh automobile buff and
+
+let's do um oh they're gonna tell me
+
+audi is better than bmw but i'm gonna do
+
+bmw is better
+
+than an audi so maybe your car buff and
+
+we run that
+
+and you'll see it says recreational i'm
+
+assuming that's what rec stands for
+
+autos so i did a pretty good job
+
+labeling that one how about uh if we
+
+have something like a caption running
+
+through there president of india and if
+
+we run that
+
+it comes up and says talk politics
+
+miscellaneous
+
+so when we take our definition our
+
+function and we run all these things
+
+through kudos we made it we were able to
+
+correctly classify texts into different
+
+groups based on which category they
+
+belong to using the naive bayes
+
+classifier now we did throw in the
+
+pipeline the tf idf vectorizer we threw
+
+in the graphs those are all things that
+
+you don't necessarily have to know to
+
+understand the naive bayes setup or
+
+classifier but they're important to know
+
+one of the main uses for the naive bayes
+
+is with the tf idf tokenizer vectorizer
+
+where tokenizes the word and has labels
+
+and we use the pipeline because you need
+
+to push all that data through and it
+
+makes it really easy and fast you don't
+
+have to know those to understand naive
+
+bayes but they certainly help for
+
+understanding the industry and data
+
+science and we can see our categorizer
+
+our naive bayes classifier we were able
+
+to predict the category religion space
+
+motorcycles autos politics and properly
+
+classify all these different things we
+
+pushed into our prediction and our
+
+trained model let's go ahead and wrap it
+
+up and let's just go through what we
+
+covered we gave you an introduction to
+
+naive bayes and how it's used to perform
+
+basic classification as a classifier we
+
+went through the basic formula the
+
+probability of a given b and the
+
+probability of b given a the basics of
+
+the naive bayes we touched a little bit
+
+on some of the different uses for the
+
+naive bayes we also went over the
+
+advantages of it and where it really
+
+shines especially when we talk about
+
+real-time processing naive bayes is very
+
+fast we talked about the shopping demo
+
+remember that if you want to try that on
+
+your own send a note down below let us
+
+know and we'll get you that data set and
+
+we also went through the python my
+
+favorite part the text classification so
+
+we learned all kinds of things in there
+
+and walking through
+
+a real life scenario where you'd use the
+
+naive bayes at i want to thank you for
+
+joining us today if you have any
+
+questions don't forget to type them down
+
+below happy learning and we look forward
+
+to hearing from you
+
+hi there if you like this video
+
+subscribe to the simply learn youtube
+
+channel and click here to watch similar
+
+videos to nerd up and get certified
+
+click here
+
